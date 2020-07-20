@@ -1,15 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './app/layouts/styles.css';
-import App from './app/layouts/App';
-import * as serviceWorker from './serviceWorker';
-import 'mobx-react-lite/batchingForReactDom'
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import "./app/layouts/styles.css";
+import App from "./app/layouts/App";
+import * as serviceWorker from "./serviceWorker";
+import "mobx-react-lite/batchingForReactDom";
+import ScrollToTop from "./app/layouts/ScrollToTop";
 
 ReactDOM.render(
-  // <React.StrictMode>
-    <App />,
-  // </React.StrictMode>,
-  document.getElementById('root')
+  <BrowserRouter>
+    <ScrollToTop>
+      <App />
+    </ScrollToTop>
+  </BrowserRouter>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
