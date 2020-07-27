@@ -87,13 +87,31 @@ export default class ProfileStore {
     try {
       await agent.Profile.deletePhoto(photo.id);
       runInAction(() => {
-        this.profile!.photos = this.profile!.photos.filter(a => a.id !== photo.id);
+        this.profile!.photos = this.profile!.photos.filter(
+          (a) => a.id !== photo.id
+        );
         this.loading = false;
       });
     } catch (error) {
       runInAction(() => {
         this.loading = false;
       });
+      console.log(error);
+      toast.error('Problem deleting the photo');
+    }
+  };
+
+  @action updateProfile = async (profile: Partial<IProfile>) => {
+    this.loading = true;
+    try {
+      await agent.Profile.updateProfile(profile);
+      runInAction(() => {
+        if (profile.displayName !== this.rootStore.userStore.user!.displayName) {
+          this.rootStore.userStore.user!.displayName = profile.displayName!;
+        }
+        this.profile = { ...this.profile!, ...profile };
+      });
+    } catch (error) {
       console.log(error);
       toast.error('Problem deleting the photo');
     }

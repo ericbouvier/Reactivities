@@ -91,6 +91,7 @@ const Profile = {
     request.postForm(`/photos`, photo),
   setMainPhoto: (id: string) => request.post(`/photos/${id}/setMain`, {}),
   deletePhoto: (id: string) => request.del(`/photos/${id}`),
+  updateProfile: (profile: Partial<IProfile>) => request.put(`/profiles`, profile)
 };
 
 export default {
