@@ -24,7 +24,6 @@ namespace Application.Comments
         public class Handler : IRequestHandler<Command, CommentDto>
         {
             private readonly DataContext _context;
-            private readonly IUserAccessor _userAccessor;
             private readonly IMapper _mapper;
             public Handler(DataContext context, IMapper mapper)
             {
